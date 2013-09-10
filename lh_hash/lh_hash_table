@@ -1,0 +1,12 @@
+#ifndef LH_HASH_TABLE_HEADER_FILE
+#define LH_HASH_TABLE_HEADER_FILE
+
+
+#include<lh_simple_alloc.hpp>
+#include<lh_hash_func.hpp>
+#include<lh_hash_table.hpp>
+
+
+
+
+#endif
