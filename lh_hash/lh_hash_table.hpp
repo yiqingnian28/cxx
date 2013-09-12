@@ -9,6 +9,7 @@
 #include<stddef.h> //for ptrdiff_t
 #include<utility> //for pair
 
+
 using std::pair;
 
 template<typename Val, 
@@ -36,6 +37,9 @@ public:
 	//TODO(liu):test this const_iterator
 	typedef LHHashTableIterator<const Val, const Key, HashFunc, EqualKey, ExtractKey, Alloc> const_iterator;
 	friend struct LHHashTableIterator<Val, Key, HashFunc, EqualKey, ExtractKey, Alloc>;
+	
+	
+	
 private:
 	typedef LHHashTableNode<Val> Node;
 	

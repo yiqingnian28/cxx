@@ -2,6 +2,7 @@
 #define LH_HASH_ITERATROR_HPP
 
 #include<stddef.h> //for ptrdiff_t
+#include<iterator> //for std::forward_iterator_tag
 
 template<typename Val, 
 		 typename Key,
@@ -39,7 +40,10 @@ struct LHHashTableIterator {
 	typedef size_t size_type;
 	typedef Val* pointer;
 	typedef Val& reference;
-		
+	
+	//stl tag
+	typedef std::forward_iterator_tag iterator_category;
+	
 	//constructors
 	LHHashTableIterator(Node* node, HashTable* ht):_pCurrentNode(node), _pHashTable(ht){}
 	LHHashTableIterator(){}

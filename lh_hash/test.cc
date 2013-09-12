@@ -1,6 +1,7 @@
 #include"lh_hash_table"
 
 #include <iostream>
+#include <algorithm>
 
 struct IntEqual{
 	bool operator()(int lhs, int rhs){
@@ -47,6 +48,11 @@ int main(){
 		cout << *iter <<' ';
 	}
 	cout << endl;
+
+	//test std find
+	cout << "test std::find(16):" << endl;	
+	HashTableType::iterator findResult = find(hashTable.begin(), hashTable.end(), 16);
+	cout << *findResult << endl;
 	
 	return 0;
 }
