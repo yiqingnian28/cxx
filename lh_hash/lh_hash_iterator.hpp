@@ -1,8 +1,15 @@
 #ifndef LH_HASH_ITERATROR_HPP
 #define LH_HASH_ITERATROR_HPP
 
-#include<stddef.h>
+#include<stddef.h> //for ptrdiff_t
 
+template<typename Val, 
+		 typename Key,
+		 typename HashFunc,
+		 typename EqualKey,
+		 typename ExtractKey, //Extract key from given value
+		 typename Alloc>
+class LHHashTable;
 
 //Node 
 template<typename Val>
@@ -17,12 +24,13 @@ template<typename Val,
 		 typename Key,
 		 typename HashFunc,
 		 typename EqualKey,
+		 typename ExtractKey,
 		 typename Alloc>
 struct LHHashTableIterator {
 	
-//	typedef LHHashTable<Val, Key, HashFunc, EqualKey, Alloc> HashTable;
-	typedef LHHashTableIterator<Val, Key, HashFunc, EqualKey, Alloc> iterator;
-	typedef LHHashTableIterator<const Val, const Key, HashFunc, EqualKey, Alloc> const_iterator;
+	typedef LHHashTable<Val, Key, HashFunc, EqualKey, ExtractKey, Alloc> HashTable;
+	typedef LHHashTableIterator<Val, Key, HashFunc, EqualKey, ExtractKey, Alloc> iterator;
+	typedef LHHashTableIterator<const Val, const Key, HashFunc, EqualKey, ExtractKey, Alloc> const_iterator;
 
 	typedef LHHashTableNode<Val> Node;
 	
@@ -31,18 +39,28 @@ struct LHHashTableIterator {
 	typedef size_t size_type;
 	typedef Val* pointer;
 	typedef Val& reference;
-	
-	Node *_pCurrentNode;
-//	HashTable* _pHashTable;
-	
+		
 	//constructors
-	LHHashTableIterator(Node* node/*, HashTable* ht*/):_pCurrentNode(node)/*, _pHashTable(ht)*/{}
+	LHHashTableIterator(Node* node, HashTable* ht):_pCurrentNode(node), _pHashTable(ht){}
 	LHHashTableIterator(){}
 
 	//operators
 	reference operator* (){return _pCurrentNode->value;}
-	iterator& operator++(){}
-
+	iterator& operator++();
+	
+	bool operator==(iterator rhs) const {
+		return (this->_pCurrentNode == rhs._pCurrentNode &&
+				this-> _pHashTable == rhs._pHashTable);
+	}
+	
+	bool operator != (iterator rhs) const{
+		return (this->_pCurrentNode != rhs._pCurrentNode ||
+				this-> _pHashTable != rhs._pHashTable);
+	}
+	
+private:
+	Node *_pCurrentNode;
+	HashTable* _pHashTable;
 };
 
 

@@ -11,9 +11,10 @@ test: \
 	test.cc \
 	lh_hash_table.hpp \
 	lh_hash_iterator.hpp \
+	lh_hash_iterator.cc \
 	lh_alloc_traits.hpp \
 	lh_simple_alloc.hpp \
-	lh_hash_func.hpp
+	lh_hash_func.hpp 
 	g++ -I . $(CXX_FLAGS) test.cc -o test
 	
 

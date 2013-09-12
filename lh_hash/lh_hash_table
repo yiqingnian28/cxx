@@ -5,6 +5,7 @@
 #include<lh_simple_alloc.hpp>
 #include<lh_hash_func.hpp>
 #include<lh_hash_table.hpp>
+#include<lh_hash_iterator.cc>
 
 
 
